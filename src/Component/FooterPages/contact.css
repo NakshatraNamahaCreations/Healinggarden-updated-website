@@ -1,0 +1,29 @@
+.contact {
+    background-color: #e0ebd6;
+    /* color: white; */
+}
+
+.fs_40 {
+    font-size: 50px;
+}
+.fs_25{
+    font-size: 35px;
+}
+.fs_20 {
+    font-size: xx-large;
+    /* color: rgba(245, 241, 241, 0.521); */
+}
+
+.success-card {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    border-radius: 0.25rem;
+    margin: 20px;
+}
+
+.success-icon {
+    color: #28a745;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
