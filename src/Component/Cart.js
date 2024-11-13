@@ -10,6 +10,8 @@ import {
 import "./cart.css";
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
+import Mobileheader from "./Layout/Mobileheader";
+import Mobilefooter from "./Layout/Mobilefooter";
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
@@ -71,6 +73,7 @@ export default function Cart() {
   return (
     <>
       <Header />
+      <Mobileheader />
       <div className="categoryview m-auto row">
         <hr className="row hr-line" style={{ borderColor: "white" }} />
         <div className="p-1">
@@ -250,6 +253,7 @@ export default function Cart() {
         </div>
       )}
       <Footer />
+      <Mobilefooter />
     </>
   );
 }

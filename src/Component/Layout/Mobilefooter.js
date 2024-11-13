@@ -7,7 +7,7 @@ import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { IoIosCall } from "react-icons/io";
 import { TfiEmail } from "react-icons/tfi";
 import { BiSolidCopyright } from "react-icons/bi";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RequestProposal from "../Request";
 
 function Mobilefooter() {
@@ -39,12 +39,15 @@ function Mobilefooter() {
       className="row mobile_footer"
       style={{ backgroundColor: "#1c4935", padding: "15px" }}
     >
-      <img
-        className=""
-        src="../workshop/HealingGardenLogo.png"
-        alt="Healing Garden Logo"
-        style={{ width: "150px", height: "100px" }}
-      />
+      <Link to="/">
+        <img
+          className=""
+          src="../workshop/HealingGardenLogo.png"
+          alt="Healing Garden Logo"
+          style={{ width: "150px", height: "100px" }}
+        />
+      </Link>
+
       <div
         className="poppins-regular pt-2"
         style={{ color: "white", fontSize: "14px" }}
@@ -67,7 +70,7 @@ function Mobilefooter() {
       <div className="row mt-3">
         <a
           className="col-2 co-md-2 footer_icons footertext"
-          href="https://www.facebook.com/HealingGardenForAll/photos/a.623622438104057/782822768850689/?type=3&_rdr"
+          href="https://www.facebook.com/HealingGardenForAll"
         >
           <BsFacebook style={{ fontSize: "30px" }} />
         </a>
@@ -203,7 +206,7 @@ function Mobilefooter() {
                   Terms & Condition
                 </a>{" "}
               </li>
-              <li className="list linktext me-1">|</li>
+              {/* <li className="list linktext me-1">|</li>  */}
               <li className="list linktext m-auto">
                 <a
                   className="poppins-regular anchortext"
@@ -212,16 +215,16 @@ function Mobilefooter() {
                   Privacy Policy
                 </a>
               </li>
-              <li className="list linktext  me-1">|</li>
+              {/* <li className="list linktext  me-1">|</li> */}
               <li className="list linktext m-auto">
                 <a
                   className="anchortext poppins-regular"
                   href="/cancellation-and-refund-policy"
                 >
-                  Cancellation & Refund
+                  Shipping & Return
                 </a>
               </li>
-              <li className="list linktext  me-1">|</li>
+              {/* <li className="list linktext  me-1">|</li> */}
               <li className="list linktext m-auto">
                 {" "}
                 <BiSolidCopyright className="me-1 m-auto linktext" />
@@ -253,6 +256,7 @@ function Mobilefooter() {
           </div>
         </div>
       </div>
+      {Proposal && <RequestProposal open={Proposal} setOpen={setProposal} />}
     </div>
   );
 }

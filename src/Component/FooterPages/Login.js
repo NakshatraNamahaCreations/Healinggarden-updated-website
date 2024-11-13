@@ -24,7 +24,7 @@ function Login() {
 
       if (res.status === 200) {
         localStorage.setItem("HGuserdata", JSON.stringify(res.data));
-        window.location.href = "/cart";
+        window.location.href = "/";
       }
     } catch (error) {
       if (
@@ -59,9 +59,11 @@ function Login() {
                 marginLeft: "20%",
                 borderRadius: "3px",
                 marginTop: "10px",
+                // textTransform: "capitalize",
               }}
               value={emailOrName}
-              onChange={(e) => setEmailOrName(e.target.value)}
+              // onChange={(e) => setEmailOrName(e.target.value)}
+              onChange={(e) => setEmailOrName(e.target.value.toLowerCase())}
             />
             <Form.Control
               type="password"

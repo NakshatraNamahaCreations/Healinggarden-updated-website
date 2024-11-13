@@ -7,7 +7,7 @@ import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { IoIosCall } from "react-icons/io";
 import { TfiEmail } from "react-icons/tfi";
 import { BiSolidCopyright } from "react-icons/bi";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RequestProposal from "../Request";
 
 export default function Footer() {
@@ -40,11 +40,13 @@ export default function Footer() {
         <div className="row  mt-3  m-auto">
           <div className="col-md-4 col-sm-12 mt-3">
             <div className="row">
-              <img
-                className="col-md-4 col-4 "
-                src="../workshop/HealingGardenLogo.png"
-                alt="Healing Garden Logo"
-              />
+              <Link to="/">
+                <img
+                  className="col-md-4 col-4 "
+                  src="../workshop/HealingGardenLogo.png"
+                  alt="Healing Garden Logo"
+                />
+              </Link>
               <p className="footertext sourc">Reconnect With Yourself</p>
               <div className="row mt-2">
                 <button
@@ -59,7 +61,7 @@ export default function Footer() {
               <div className="row mt-3">
                 <a
                   className="col-2 co-md-2 footer_icons footertext"
-                  href="https://www.facebook.com/HealingGardenForAll/photos/a.623622438104057/782822768850689/?type=3&_rdr"
+                  href="https://www.facebook.com/HealingGardenForAll"
                 >
                   <BsFacebook />
                 </a>
@@ -216,7 +218,7 @@ export default function Footer() {
                       className="anchortext"
                       href="/cancellation-and-refund-policy"
                     >
-                      Cancellation & Refund
+                      Shipping & Return
                     </a>
                   </li>
                   <li className="list linktext  me-1">|</li>

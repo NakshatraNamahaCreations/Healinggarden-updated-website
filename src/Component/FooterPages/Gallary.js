@@ -6,6 +6,7 @@ import Header from "../Layout/Header";
 import Footer from "../Layout/Footer";
 import { Helmet } from "react-helmet";
 import Mobileheader from "../Layout/Mobileheader";
+import Mobilefooter from "../Layout/Mobilefooter";
 
 export default function GalleryComponent() {
   const [isToggle, setIsToggle] = useState(0);
@@ -135,10 +136,10 @@ export default function GalleryComponent() {
       img: "../gallary/Self-Love Workshop (1).jpg",
     },
     { title: "Sound Healing Session", img: "../gallary/healing garden3.png" },
-    {
-      title: "Sound Healing Session",
-      img: "../gallary/Sound Healing Session (1).jpg",
-    },
+    // {
+    //   title: "Sound Healing Session",
+    //   img: "../gallary/Sound Healing Session (1).jpg",
+    // },
     {
       title: "Mandala Art Training",
       img: "../gallary/Mandala Art Training.png",
@@ -251,116 +252,235 @@ export default function GalleryComponent() {
           Videos
         </div>
       </div>
-
-      {isToggle === 0 && (
-        <div className="row m-auto mt-3">
-          <Gallery
-            photos={galleryImages.map((image, index) => ({
-              src: image.img,
-              width: 1 / 5,
-              height: image.height,
-              title: image.title,
-              index: index,
-            }))}
-            onClick={(event, { photo, index }) => {
-              openLightbox(null, { index });
-            }}
-            renderImage={({ photo }) => (
-              <div
-                style={{ position: "relative", margin: "5px", flex: "1 0 16%" }}
-                onClick={() => openLightbox(null, { index: photo.index })}
-              >
-                <img
-                  src={photo.src}
-                  width="100%"
-                  height="200px"
-                  alt={photo.title}
-                  style={{ cursor: "pointer", maxWidth: "100%" }}
-                />
+      <div className="web-gallery">
+        {isToggle === 0 && (
+          <div className="row m-auto mt-3">
+            <Gallery
+              photos={galleryImages.map((image, index) => ({
+                src: image.img,
+                width: 1 / 5,
+                height: image.height,
+                title: image.title,
+                index: index,
+              }))}
+              onClick={(event, { photo, index }) => {
+                openLightbox(null, { index });
+              }}
+              renderImage={({ photo }) => (
                 <div
                   style={{
-                    position: "absolute",
-                    bottom: "8px",
-                    // left: '8px',
-                    color: "#fff",
-                    backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    padding: "5px",
-                    borderRadius: "3px",
-                    margin: "2px",
-                    fontSize: "12px",
-                    textAlign: "center",
+                    position: "relative",
+                    margin: "5px",
+                    flex: "1 0 16%",
                   }}
+                  onClick={() => openLightbox(null, { index: photo.index })}
                 >
-                  {photo.title}
+                  <img
+                    src={photo.src}
+                    width="100%"
+                    height="200px"
+                    alt={photo.title}
+                    style={{ cursor: "pointer", maxWidth: "100%" }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "8px",
+                      // left: '8px',
+                      color: "#fff",
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      padding: "5px",
+                      borderRadius: "3px",
+                      margin: "2px",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {photo.title}
+                  </div>
                 </div>
-              </div>
-            )}
-          />
-          <ModalGateway>
-            {viewerIsOpen && (
-              <Modal onClose={closeLightbox}>
-                <Carousel
-                  currentIndex={currentImage}
-                  views={galleryImages.map((x) => ({
-                    src: x.img,
-                    caption: x.title,
-                  }))}
-                />
-              </Modal>
-            )}
-          </ModalGateway>
-        </div>
-      )}
-
-      {isToggle === 1 && (
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {galleryVideos.map((videoUrl, index) => (
-            <div
-              key={index}
-              style={{
-                position: "relative",
-                margin: "5px",
-                flex: "0 2 20%",
-                cursor: "pointer",
-                boxSizing: "border-box",
+              )}
+            />
+            <ModalGateway>
+              {viewerIsOpen && (
+                <Modal onClose={closeLightbox}>
+                  <Carousel
+                    currentIndex={currentImage}
+                    views={galleryImages.map((x) => ({
+                      src: x.img,
+                      caption: x.title,
+                    }))}
+                  />
+                </Modal>
+              )}
+            </ModalGateway>
+          </div>
+        )}
+      </div>
+      <div className="mobile-gallery">
+        {isToggle === 0 && (
+          <div className="row m-auto mt-3">
+            <Gallery
+              photos={galleryImages.map((image, index) => ({
+                src: image.img,
+                width: 1,
+                height: 1,
+                title: image.title,
+                index: index,
+              }))}
+              onClick={(event, { photo, index }) => {
+                openLightbox(null, { index });
               }}
-              onClick={() => playVideo(videoUrl)}
-            >
-              <img
-                src={`https://img.youtube.com/vi/${extractVideoId(
-                  videoUrl
-                )}/hqdefault.jpg`}
-                width="100%"
-                height="200"
-                alt={`Video Thumbnail ${index}`}
+              renderImage={({ photo }) => (
+                <div
+                  className="gallery-item"
+                  style={{
+                    position: "relative",
+                    margin: "5px",
+                    flex: "1 0 33%", // Default to 3 images per row
+                    boxSizing: "border-box",
+                  }}
+                  onClick={() => openLightbox(null, { index: photo.index })}
+                >
+                  <img
+                    src={photo.src}
+                    width="100%"
+                    height="auto"
+                    alt={photo.title}
+                    style={{ cursor: "pointer", maxWidth: "100%" }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "8px",
+                      color: "#fff",
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      padding: "5px",
+                      borderRadius: "3px",
+                      margin: "2px",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {photo.title}
+                  </div>
+                </div>
+              )}
+            />
+            <ModalGateway>
+              {viewerIsOpen && (
+                <Modal onClose={closeLightbox}>
+                  <Carousel
+                    currentIndex={currentImage}
+                    views={galleryImages.map((x) => ({
+                      src: x.img,
+                      caption: x.title,
+                    }))}
+                  />
+                </Modal>
+              )}
+            </ModalGateway>
+          </div>
+        )}
+      </div>
+
+      <div className="web-gallery">
+        {isToggle === 1 && (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {galleryVideos.map((videoUrl, index) => (
+              <div
+                key={index}
                 style={{
-                  display: currentVideo === videoUrl ? "none" : "block",
+                  position: "relative",
+                  margin: "5px",
+                  flex: "0 2 20%",
+                  cursor: "pointer",
+                  boxSizing: "border-box",
                 }}
-              />
-              {currentVideo === videoUrl && (
-                <iframe
+                onClick={() => playVideo(videoUrl)}
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${extractVideoId(
+                    videoUrl
+                  )}/hqdefault.jpg`}
+                  width="100%"
+                  height="200"
+                  alt={`Video Thumbnail ${index}`}
+                  style={{
+                    display: currentVideo === videoUrl ? "none" : "block",
+                  }}
+                />
+                {currentVideo === videoUrl && (
+                  <iframe
+                    width="100%"
+                    height="auto"
+                    src={`https://www.youtube.com/embed/${extractVideoId(
+                      videoUrl
+                    )}?autoplay=1`}
+                    title={`Video ${index + 1}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="mobile-gallery">
+        {isToggle === 1 && (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {galleryVideos.map((videoUrl, index) => (
+              <div
+                key={index}
+                className="video-item"
+                onClick={() => playVideo(videoUrl)}
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${extractVideoId(
+                    videoUrl
+                  )}/hqdefault.jpg`}
                   width="100%"
                   height="auto"
-                  src={`https://www.youtube.com/embed/${extractVideoId(
-                    videoUrl
-                  )}?autoplay=1`}
-                  title={`Video ${index + 1}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+                  alt={`Video Thumbnail ${index}`}
+                  style={{
+                    display: currentVideo === videoUrl ? "none" : "block",
+                  }}
+                />
+                {currentVideo === videoUrl && (
+                  <iframe
+                    width="100%"
+                    height="auto"
+                    src={`https://www.youtube.com/embed/${extractVideoId(
+                      videoUrl
+                    )}?autoplay=1`}
+                    title={`Video ${index + 1}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       <Footer />
+      <Mobilefooter />
     </>
   );
 }

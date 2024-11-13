@@ -259,9 +259,12 @@ export default function CategoryView() {
                 className=" p-0 "
                 src={selectedBanner.img}
                 alt="banner"
-                style={{ width: "100%", height: "300px" }}
+                style={{ width: "100%", height: "150px", objectFit: "cover" }}
               />
-              <p className="main_heading fs-1 text-white banner-text sourc">
+              <p
+                className="poppins-regular mt-5  mb-5 text-white banner-text "
+                style={{ fontSize: "19px" }}
+              >
                 {selectedBanner.info}
               </p>
             </div>

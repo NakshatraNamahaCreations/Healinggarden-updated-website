@@ -110,11 +110,13 @@ function Mobileheader() {
         }}
       >
         <div className="col-8">
-          <img
-            src="../workshop/HealingGardenLogo.png"
-            alt="Healing Garden Logo"
-            style={{ width: "60px", height: "50px" }}
-          />
+          <Link to="/">
+            <img
+              src="../workshop/HealingGardenLogo.png"
+              alt="Healing Garden Logo"
+              style={{ width: "60px", height: "50px" }}
+            />
+          </Link>
         </div>
         <div className="col-4 d-flex" style={{ justifyContent: "end" }}>
           <Link

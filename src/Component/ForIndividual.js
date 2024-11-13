@@ -325,84 +325,414 @@ export default function ForIndividual() {
       </div>
       <div className="row m-auto p-2 ">
         <p
-          className="about-us poppins-regular"
+          className="about-us poppins-regular mt-2"
           style={{ fontSize: "17px", fontWeight: "bold" }}
         >
           For Individuals
         </p>
       </div>
-      <div className="col-md-12 ">
-        <Carousel data-bs-theme="dark">
-          {AboutBanner.map((Ele, index) => (
-            <Carousel.Item key={index} interval={800}>
-              <img
-                className="col-md-12 p-0 PositionR"
-                height={430}
-                src={`${Ele.img}`}
-                alt="banner"
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
 
-      <div className="row m-auto  PositionR">
-        <div className="row m-auto p-2 text-center">
-          <div className="col-md-5"></div>
-          <p className="col-md-3 about-us poppins-regular">Live Workshop</p>
-          <div className="col-md-1"></div>
-          <div className="col-md-3 d-flex">
-            <button
-              onClick={() => setopenFilter(!openFilter)}
-              className="me-2 cursor filterbtn p-0 about-us inter "
-            >
-              <LuFilter className="fs-4 " /> Filter
-            </button>
-            <button
-              onClick={() => setSort(!sort)}
-              className="filterbtn p-0  cursor about-us inter "
-            >
-              {" "}
-              <MdOutlineSort className="fs-4" />
-              Sort
-            </button>
+      <div className="web-view">
+        <div className="col-md-12 ">
+          <Carousel data-bs-theme="dark">
+            {AboutBanner.map((Ele, index) => (
+              <Carousel.Item key={index} interval={800}>
+                <img
+                  className="col-md-12 p-0 PositionR"
+                  height={430}
+                  src={`${Ele.img}`}
+                  alt="banner"
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
+
+        <div className="row m-auto  PositionR">
+          <div className="row m-auto p-2 text-center">
+            <div className="col-md-5"></div>
+            <p className="col-md-3 about-us poppins-regular">Live Workshop</p>
+            <div className="col-md-1"></div>
+            <div className="col-md-3 d-flex">
+              <button
+                onClick={() => setopenFilter(!openFilter)}
+                className="me-2 cursor filterbtn p-0 about-us inter "
+              >
+                <LuFilter className="fs-4 " /> Filter
+              </button>
+              <button
+                onClick={() => setSort(!sort)}
+                className="filterbtn p-0  cursor about-us inter "
+              >
+                {" "}
+                <MdOutlineSort className="fs-4" />
+                Sort
+              </button>
+            </div>
+          </div>
+          <div className="col-md-11 m-auto PositionR">
+            <div className="row m-auto individ-main   text-center">
+              {FilteredWorkshop?.map((Ele, index) => (
+                <div className="col-md-3 m-4" key={index}>
+                  <div className="row individual-contianer p-0">
+                    <img
+                      className="col-md-12 p-0 m-0 indi_img cursor"
+                      height={150}
+                      src={`https://api.healinggarden.co.in/Product/${Ele.WorkshopImages?.[0]}`}
+                      onClick={() =>
+                        handleView(
+                          Ele,
+                          Ele.nextSlot.Workshodate,
+                          Ele.nextSlot.startTime,
+                          Ele.nextSlot.endTime
+                        )
+                      }
+                    />
+                    <p className="individualtext m-auto">
+                      {formatDate(Ele.nextSlot.Workshodate)}
+                    </p>
+                    <p className="individualtext m-auto">
+                      {`${formatTime(Ele.nextSlot.startTime)} - ${formatTime(
+                        Ele.nextSlot.endTime
+                      )}`}
+                    </p>
+                  </div>
+                  <p className="m-auto textbold inter">{Ele.workshopTitle}</p>
+                  <p className="m-auto">{Ele.sessionAddress}</p>
+                  <p className="">
+                    <span className="textbold inter me-2 offerprice">
+                      Rs.{Ele.WFeePerParticipant}
+                    </span>
+                    <span className="textbold inter">Rs.{Ele.OfferPrice}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+            {openFilter && (
+              <div className="row filter-main ">
+                <div className="row m-auto mt-4">
+                  {/* Price */}
+                  <div className="col-md-3">
+                    <p className="inter textbold">Price</p>
+                    <div className="row">
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="price"
+                          value="Free"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={selectedData.price["Free"] || false}
+                        />
+                        <span className="f12 m-auto">Free</span>
+                      </p>
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="price"
+                          value="0.Rs-500"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={selectedData.price["0.Rs-500"] || false}
+                        />
+                        <span className="f12 m-auto">0.Rs-500</span>
+                      </p>
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="price"
+                          value="Rs. 501 - Rs. 2000"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={
+                            selectedData.price["Rs. 501 - Rs. 2000"] || false
+                          }
+                        />
+                        <span className="f12 m-auto">Rs. 501 - Rs. 2000</span>
+                      </p>
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="price"
+                          value="Rs. 2001 - Rs. 5000"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={
+                            selectedData.price["Rs. 2001 - Rs. 5000"] || false
+                          }
+                        />
+                        <span className="f12 m-auto">Rs. 2001 - Rs. 5000</span>
+                      </p>
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="price"
+                          value="Above Rs. 5000"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={
+                            selectedData.price["Above Rs. 5000"] || false
+                          }
+                        />
+                        <span className="f12 m-auto">Above Rs. 5000</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Category */}
+                  <div className="col-md-4">
+                    <p className="inter textbold">Category</p>
+                    {categoryData.map((Ele, index) => (
+                      <p key={index}>
+                        <input
+                          className="me-2 m-auto"
+                          name="category"
+                          value={Ele._id}
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={selectedData.category[Ele._id] || false}
+                        />
+                        <span className="f12 m-auto">{Ele.category}</span>
+                      </p>
+                    ))}
+                  </div>
+
+                  {/* Mode */}
+                  <div className="col-md-2">
+                    <p className="inter textbold">Mode</p>
+                    <div className="row">
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="mode"
+                          value="Online"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={selectedData.mode["Online"] || false}
+                        />
+                        <span className="f12 m-auto">Online</span>
+                      </p>
+                      <p>
+                        <input
+                          className="me-2 m-auto"
+                          name="mode"
+                          value="Offline"
+                          onChange={handleSelect}
+                          type="checkbox"
+                          checked={selectedData.mode["Offline"] || false}
+                        />
+                        <span className="f12 m-auto">Offline</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* City */}
+                  {/* <div className="col-md-3">
+                  <p className="inter textbold">City</p>
+                  <div className="row">
+                    <p>
+                      <input
+                        className="me-2 m-auto"
+                        name="city"
+                        value="Mumbai"
+                        onChange={handleSelect}
+                        type="checkbox"
+                        checked={selectedData.city["Mumbai"] || false}
+                      />
+                      <span className="f12 m-auto">Mumbai</span>
+                    </p>
+                    <p>
+                      <input
+                        className="me-2 m-auto"
+                        name="city"
+                        value="Hyderabad"
+                        onChange={handleSelect}
+                        type="checkbox"
+                        checked={selectedData.city["Hyderabad"] || false}
+                      />
+                      <span className="f12 m-auto">Hyderabad</span>
+                    </p>
+                    <p>
+                      <input
+                        className="me-2 m-auto"
+                        name="city"
+                        value="Bengaluru"
+                        onChange={handleSelect}
+                        type="checkbox"
+                        checked={selectedData.city["Bengaluru"] || false}
+                      />
+                      <span className="f12 m-auto">Bengaluru</span>
+                    </p>
+                  </div>
+                </div> */}
+
+                  <div className="row">
+                    <div className="col-md-4 d-flex m-auto">
+                      <div className="col-md-6">
+                        <RxReset
+                          className="cursor"
+                          onClick={() => setselectedData(initialdata)}
+                        />
+                        <br />
+                        <span
+                          className="text_light cursor"
+                          onClick={handleReset}
+                        >
+                          Reset
+                        </span>
+                      </div>
+
+                      <div className="col-md-6">
+                        <button className="donebtn p-1 " onClick={handleFilter}>
+                          Done
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Sort */}
+
+            {sort && (
+              <div className="row sort-main">
+                <div className="m-auto sort-inner   ">
+                  <div className="row text-center">
+                    <p
+                      onClick={() => handleSortPrice("Default")}
+                      className="inter cursor p-2 m-auto text_light"
+                    >
+                      Default
+                    </p>
+
+                    <p
+                      onClick={() => handleSortPrice("Low to High")}
+                      className="inter cursor p-2 m-auto text_light"
+                    >
+                      Low to High
+                    </p>
+                    <p
+                      onClick={() => handleSortPrice("High to Low")}
+                      className="inter cursor p-2 m-auto text_light"
+                    >
+                      High to Low
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        <div className="col-md-11 m-auto PositionR">
-          <div className="row m-auto individ-main   text-center">
+        <div className="row m-auto seo mt-3">
+          <p className="poppins-regular  m-auto text-white">
+            We offer a range of therapeutic workshops for our end-users, both
+            online and in-person. Whether it's hands-on art & craft, immersive
+            nature and gardening experiences, or mindfulness and healing
+            sessions, there's something for everyone. You can book tickets and
+            join workshops conveniently.
+          </p>
+        </div>
+      </div>
+
+      <div className="mobile-view">
+        <div className="col-md-12 ">
+          <Carousel data-bs-theme="dark">
+            {AboutBanner.map((Ele, index) => (
+              <Carousel.Item key={index} interval={800}>
+                <img
+                  className="col-md-12 p-0 PositionR"
+                  // height={430}
+                  src={`${Ele.img}`}
+                  alt="banner"
+                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
+
+        <div className="row m-auto  PositionR">
+          <div className="row m-auto p-2 text-center">
+            <div className="col-md-5"></div>
+            <p
+              className="col-md-3 about-us poppins-regular"
+              style={{ fontWeight: "bold" }}
+            >
+              Live Workshop
+            </p>
+            <div className="col-md-1"></div>
+            <div className="col-md-3 d-flex">
+              <button
+                onClick={() => setopenFilter(!openFilter)}
+                className="me-2  cursor filterbtn p-0 about-us inter "
+              >
+                <LuFilter className="fs-4 " />{" "}
+                <span className="poppins-regular">Filter</span>
+              </button>
+              <button
+                onClick={() => setSort(!sort)}
+                className="filterbtn p-0  cursor about-us inter "
+              >
+                {" "}
+                <MdOutlineSort className="fs-4" />
+                <span className="poppins-regular">Sort</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="d-flex   text-center">
             {FilteredWorkshop?.map((Ele, index) => (
-              <div className="col-md-3 m-4" key={index}>
-                <div className="row individual-contianer p-0">
-                  <img
-                    className="col-md-12 p-0 m-0 indi_img cursor"
-                    height={150}
-                    src={`https://api.healinggarden.co.in/Product/${Ele.WorkshopImages?.[0]}`}
-                    onClick={() =>
-                      handleView(
-                        Ele,
-                        Ele.nextSlot.Workshodate,
-                        Ele.nextSlot.startTime,
-                        Ele.nextSlot.endTime
-                      )
-                    }
-                  />
-                  <p className="individualtext m-auto">
+              <div className="col-12 mt-3" key={index}>
+                <div
+                  className="  p-4"
+                  style={{ backgroundColor: "#f0e7d6", borderRadius: "10px" }}
+                >
+                  <div className="d-flex" style={{ justifyContent: "center" }}>
+                    <img
+                      className=""
+                      height={150}
+                      style={{ width: "100%", objectFit: "cover" }}
+                      src={`https://api.healinggarden.co.in/Product/${Ele.WorkshopImages?.[0]}`}
+                      onClick={() =>
+                        handleView(
+                          Ele,
+                          Ele.nextSlot.Workshodate,
+                          Ele.nextSlot.startTime,
+                          Ele.nextSlot.endTime
+                        )
+                      }
+                    />
+                  </div>
+                  <div
+                    className="poppins-regular m-auto pt-2"
+                    style={{ color: "black" }}
+                  >
                     {formatDate(Ele.nextSlot.Workshodate)}
-                  </p>
-                  <p className="individualtext m-auto">
+                  </div>
+                  <div
+                    className="poppins-regular m-auto pt-1"
+                    style={{ color: "black" }}
+                  >
                     {`${formatTime(Ele.nextSlot.startTime)} - ${formatTime(
                       Ele.nextSlot.endTime
                     )}`}
-                  </p>
+                  </div>
                 </div>
-                <p className="m-auto textbold inter">{Ele.workshopTitle}</p>
-                <p className="m-auto">{Ele.sessionAddress}</p>
-                <p className="">
-                  <span className="textbold inter me-2 offerprice">
+                <div className="m-auto poppins-regular mt-2 textbold inter">
+                  {Ele.workshopTitle}
+                </div>
+                <div className="m-auto poppins-regular">
+                  {Ele.sessionAddress}
+                </div>
+                <div className="">
+                  <span className="textbold inter poppins-regular me-2 offerprice">
                     Rs.{Ele.WFeePerParticipant}
                   </span>
-                  <span className="textbold inter">Rs.{Ele.OfferPrice}</span>
-                </p>
+                  <span className="textbold inter poppins-regular">
+                    Rs.{Ele.OfferPrice}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -522,46 +852,6 @@ export default function ForIndividual() {
                   </div>
                 </div>
 
-                {/* City */}
-                {/* <div className="col-md-3">
-                  <p className="inter textbold">City</p>
-                  <div className="row">
-                    <p>
-                      <input
-                        className="me-2 m-auto"
-                        name="city"
-                        value="Mumbai"
-                        onChange={handleSelect}
-                        type="checkbox"
-                        checked={selectedData.city["Mumbai"] || false}
-                      />
-                      <span className="f12 m-auto">Mumbai</span>
-                    </p>
-                    <p>
-                      <input
-                        className="me-2 m-auto"
-                        name="city"
-                        value="Hyderabad"
-                        onChange={handleSelect}
-                        type="checkbox"
-                        checked={selectedData.city["Hyderabad"] || false}
-                      />
-                      <span className="f12 m-auto">Hyderabad</span>
-                    </p>
-                    <p>
-                      <input
-                        className="me-2 m-auto"
-                        name="city"
-                        value="Bengaluru"
-                        onChange={handleSelect}
-                        type="checkbox"
-                        checked={selectedData.city["Bengaluru"] || false}
-                      />
-                      <span className="f12 m-auto">Bengaluru</span>
-                    </p>
-                  </div>
-                </div> */}
-
                 <div className="row">
                   <div className="col-md-4 d-flex m-auto">
                     <div className="col-md-6">
@@ -616,16 +906,18 @@ export default function ForIndividual() {
             </div>
           )}
         </div>
+
+        <div className="row m-auto seo mt-3">
+          <p className="poppins-regular  m-auto text-white">
+            We offer a range of therapeutic workshops for our end-users, both
+            online and in-person. Whether it's hands-on art & craft, immersive
+            nature and gardening experiences, or mindfulness and healing
+            sessions, there's something for everyone. You can book tickets and
+            join workshops conveniently.
+          </p>
+        </div>
       </div>
-      <div className="row m-auto seo mt-3">
-        <p className="poppins-regular  m-auto text-white">
-          We offer a range of therapeutic workshops for our end-users, both
-          online and in-person. Whether it's hands-on art & craft, immersive
-          nature and gardening experiences, or mindfulness and healing sessions,
-          there's something for everyone. You can book tickets and join
-          workshops conveniently.
-        </p>
-      </div>
+
       <Footer />
       <Mobilefooter />
     </>

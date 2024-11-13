@@ -57,11 +57,20 @@ function Signup() {
       }
     }
   };
+  // const handleChange = (e) => {
+  //   let { name, value } = e.target;
+  //   setFormData((prevedata) => ({
+  //     ...prevedata,
+  //     [name]: value,
+  //   }));
+  // };
+
   const handleChange = (e) => {
-    let { name, value } = e.target;
-    setFormData((prevedata) => ({
-      ...prevedata,
-      [name]: value,
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: name === "email" ? value.toLowerCase() : value, // Convert email to lowercase
     }));
   };
 

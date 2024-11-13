@@ -40,13 +40,13 @@ export default function Categorylist() {
         <div className="row m-auto ">
           <div className="d-flex p-3 ">
             <li className="headertext poppins-regular">
-              <a className="headertext me-1" href="/">
+              <a className="poppins-regular headertext me-1" href="/">
                 Home
               </a>
             </li>
             <li className="headertext me-1"> {">"} </li>
             <li className="headertext poppins-regular">
-              <a className="headertext" href="/categorylist">
+              <a className="poppins-regular headertext" href="/categorylist">
                 {" "}
                 Categories
               </a>
@@ -59,7 +59,7 @@ export default function Categorylist() {
           {Banner.map((Ele, index) => (
             <Carousel.Item key={index} interval={800}>
               <img
-                className="col-md-12 p-0 PositionR"
+                className="col-md-12 p-0 PositionR mobile-category-slider"
                 height={460}
                 src={Ele.img}
                 alt={`Banner ${index}`}

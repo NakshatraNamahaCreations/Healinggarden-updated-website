@@ -432,9 +432,9 @@ export default function About() {
                 <div className="row">
                   <p className="sub_heading textbold">Our Headquarter:</p>
                   <p className="sub_heading textbold">
-                    Our head quarter is located in Whitefield Bangalore, and we
-                    extend our services across Bangalore, Mumbai, Delhi NCR and
-                    Hyderabad.
+                    Our head quarter is located in Whitefield, and Bangalore,
+                    and we extend our services across Bangalore, Mumbai, Delhi
+                    NCR and Hyderabad.
                   </p>
                 </div>
               </div>
@@ -453,7 +453,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
       <div className="mobile-about">
         <div className="row m-auto aboubanner text-center">
           <div className="row m-auto">
@@ -478,7 +477,7 @@ export default function About() {
 
         <div className="row mt-5 p-4 m-auto PositionR">
           <div className="col-md-5 col-12 m-auto PositionR">
-            {/* <img src="./workshop/abot4.png" className="aboutImg" alt="" />
+            <img src="./workshop/abot4.png" className="aboutImg" alt="" />
             <img
               className="about-grap"
               alt=""
@@ -490,11 +489,11 @@ export default function About() {
               className="about_svg4herat"
               src="../photos/icons (15).png"
               alt=""
-            /> */}
+            />
           </div>
 
           <div className="col-md-2 d-none d-md-block">
-            {/* <img className="about_svg1" src="../workshop/img5.svg" alt="" /> */}
+            <img className="about_svg1" src="../workshop/img5.svg" alt="" />
           </div>
 
           <div className="col-md-5 col-12 m-auto ">
@@ -505,7 +504,7 @@ export default function About() {
               ABOUT US
             </p>
 
-            {/* <img className="about_svg2" src="../photos/icons (9).png" alt="" /> */}
+            <img className="about_svg2" src="../photos/icons (9).png" alt="" />
 
             <p className="poppins-regular" style={{ fontSize: "14px" }}>
               Healing Garden is dedicated to enhancing mental & social-wellness
@@ -619,10 +618,7 @@ export default function About() {
                   Saloni@HealingGarden.co.in
                 </p>
               </div>
-              <a
-                href="https://www.instagram.com/healinggardenindia/"
-                className="row"
-              >
+              <div className="row">
                 <div className="col-md-2 col-2">
                   <FaInstagram className="icons" />
                 </div>
@@ -632,12 +628,8 @@ export default function About() {
                 >
                   HealingGardenIndia
                 </p>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/saloni-k/"
-                style={{ color: "white" }}
-                className="row"
-              >
+              </div>
+              <div className="row">
                 <div className="col-md-2 col-2">
                   <FaLinkedin className="icons" />
                 </div>
@@ -648,7 +640,7 @@ export default function About() {
                   {" "}
                   https://www.linkedin.com/in/saloni-k/
                 </p>
-              </a>
+              </div>
             </div>
             <div className="col-md-8">
               <div className="row ">
@@ -830,7 +822,7 @@ export default function About() {
                 );
               })}
             </div>
-            {/* <img
+            <img
               className="team-svg2"
               width={200}
               height={200}
@@ -841,7 +833,7 @@ export default function About() {
               width={120}
               height={120}
               src="../photos/icons (15).png"
-            /> */}
+            />
           </div>
         </div>
 
@@ -896,9 +888,9 @@ export default function About() {
                     className="poppins-regular"
                     style={{ fontSize: "14px", color: "grey" }}
                   >
-                    Our head quarter is located in Whitefield Bangalore, and we
-                    extend our services across Bangalore, Mumbai, Delhi NCR and
-                    Hyderabad.
+                    Our head quarter is located in Whitefield, and Bangalore,
+                    and we extend our services across Bangalore, Mumbai, Delhi
+                    NCR and Hyderabad.
                   </p>
                 </div>
               </div>

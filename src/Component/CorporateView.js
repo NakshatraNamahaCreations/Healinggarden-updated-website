@@ -775,12 +775,12 @@ export default function CorporateView() {
                 allowFullScreen
               ></iframe>
 
-              <img
+              {/* <img
                 className="viewsvg1"
                 width={250}
                 height={250}
                 src="../workshop/img4.svg"
-              />
+              /> */}
             </div>
 
             <div className="col-md-6 m-auto">
@@ -819,23 +819,23 @@ export default function CorporateView() {
                   Request A Proposal
                 </button>
               </div>
-              <img
+              {/* <img
                 className="viewsvg2"
                 width={300}
                 height={300}
                 src="../workshop/img6.svg"
-              />
+              /> */}
             </div>
           </div>
 
           <div className="row m-auto view-reason p-2 mt-3">
             <div className="row PositionR">
-              <img
+              {/* <img
                 className="viewsvg3"
                 width={250}
                 height={250}
                 src="../workshop/img6.svg"
-              />
+              /> */}
 
               <p
                 className="poppins-regular main_heading subtext text_light"
@@ -846,21 +846,21 @@ export default function CorporateView() {
               <ul>
                 <div
                   className="reason poppins-regular"
-                  style={{ fontWeight: "bold", fontSize: "14px" }}
+                  style={{ fontSize: "14px" }}
                   dangerouslySetInnerHTML={{
                     __html: ShowFullReasonToJoin
                       ? DataById?.reasonToJoin?.[0]
-                      : `${DataById?.reasonToJoin?.[0]?.substring(0, 600)}`,
+                      : `${DataById?.reasonToJoin?.[0]}`,
                   }}
                 />
               </ul>
-              <a
+              {/* <a
                 className=" readmore cursor"
                 style={{ position: "relative", zIndex: "1", textAlign: "end" }}
                 onClick={() => setShowFullReasonToJoin(!ShowFullReasonToJoin)}
               >
                 {!ShowFullReasonToJoin ? " Read More..." : " Read Less"}
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -1190,7 +1190,10 @@ export default function CorporateView() {
                   className=" d-flex"
                   style={{ justifyContent: "space-between" }}
                 >
-                  <p className="poppins-regular textbold">
+                  <p
+                    className="poppins-regular textbold"
+                    style={{ fontSize: "14px" }}
+                  >
                     Our Workshop Categories
                   </p>
 

@@ -6,6 +6,8 @@ import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Mobileheader from "./Layout/Mobileheader";
+import Mobilefooter from "./Layout/Mobilefooter";
 
 export default function Checkout() {
   const { state } = useLocation();
@@ -78,6 +80,7 @@ export default function Checkout() {
   return (
     <>
       <Header />
+      <Mobileheader />
 
       <div className="col-md-6 m-auto">
         <h2 className="mb-4 text-center">Checkout</h2>
@@ -171,7 +174,7 @@ export default function Checkout() {
             </Card.Body>
           </Card>
 
-          <Button className="submit w-100" onClick={initiatePayment}>
+          <Button className="submit w-100 mb-3" onClick={initiatePayment}>
             Place Order
           </Button>
 
@@ -187,6 +190,7 @@ export default function Checkout() {
       </div>
 
       <Footer />
+      <Mobilefooter />
     </>
   );
 }

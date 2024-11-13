@@ -39,13 +39,13 @@ export default function CancellationAndRefund() {
         <div className="row m-auto ">
           <div className="d-flex p-3 ">
             <li className="headertext">
-              <a className="headertext me-1" href="/">
+              <a className="poppins-regular headertext me-1" href="/">
                 Home
               </a>
             </li>
             <li className="headertext me-1"> {">"} </li>
             <li className="headertext">
-              <a className="headertext" href="/refund">
+              <a className="poppins-regular headertext" href="/refund">
                 {" "}
                 Refund and Cancellation Policy
               </a>
@@ -55,19 +55,28 @@ export default function CancellationAndRefund() {
       </div>
       <div className="container  m-auto p-4">
         <div className="row text-center">
-          <h1 className="m-auto heading mb-3 mt-3">
+          <div
+            className="m-auto poppins-regular  mb-3 mt-3"
+            style={{ fontSize: "17px", fontWeight: "bold" }}
+          >
             Refund and Cancellation Policy
-          </h1>
+          </div>
         </div>
-        {/* <p className="refund-text">
+        <p className="poppins-regular" style={{ fontSize: "14px" }}>
           Our refund and cancellation policy details how you can manage
           cancellations or refunds for products/services purchased through the
-          Platform. Here are the guidelines:{" "}
-        </p> */}
-        {/* <ul>
-          <li className="list_typ">Cancellation Policy:</li>
+          Platform. Here are the guidelines:
+        </p>
+
+        <ul>
+          <div
+            className="poppins-regular"
+            style={{ fontSize: "15px", fontWeight: "bold" }}
+          >
+            1. Cancellation Policy:
+          </div>
           <ul>
-            <li className="refund-text">
+            <li className="poppins-regular" style={{ fontSize: "14px" }}>
               {" "}
               <strong>Perishable Items:</strong> We do not accept cancellation
               requests for perishable items such as flowers and edibles, or for
@@ -75,23 +84,28 @@ export default function CancellationAndRefund() {
               is of unsatisfactory quality, a replacement can be arranged upon
               verification.
             </li>
-            <li className="refund-text">
+            <li className="poppins-regular" style={{ fontSize: "14px" }}>
               {" "}
-              <strong>Non-perishable :</strong>items such as glass containers
+              <strong>Non-perishable items :</strong>such as glass containers
               and planters, cancellations are not assured. You may request
               cancellation by calling 96205 20200 on the same day the order is
               placed, and we will consider processing your request.
             </li>
-            <li className="refund-text">
+            <li className="poppins-regular" style={{ fontSize: "14px" }}>
               {" "}
               <strong>Workshop tickets:</strong> Once a workshop ticket is
               purchased, it cannot be canceled, exchanged, or rescheduled to
               another date.
             </li>
           </ul>
-          <li className="sub_heading list_typ">Damaged or Defective Items:</li>
+          <div
+            className="poppins-regular"
+            style={{ fontSize: "15px", fontWeight: "bold" }}
+          >
+            2. Damaged or Defective Items:
+          </div>
           <ul>
-            <li className="refund-text">
+            <li className="poppins-regular" style={{ fontSize: "14px" }}>
               If you receive damaged or defective items, please contact our
               customer service team immediately. Requests will be processed
               after verification by the seller/merchant. For perishable items
@@ -101,20 +115,36 @@ export default function CancellationAndRefund() {
             </li>
           </ul>
 
-          <li className="sub_heading list_typ">Refunds:</li>
+          <div
+            className="poppins-regular"
+            style={{ fontSize: "15px", fontWeight: "bold" }}
+          >
+            3. Refunds:{" "}
+          </div>
           <ul>
-            <li className="refund-text">
+            <li className="poppins-regular" style={{ fontSize: "14px" }}>
               Approved refunds by HEALING GARDEN will be processed within 7
               days.
             </li>
           </ul>
-        </ul> */}
-        <p>
+        </ul>
+
+        <div
+          className="poppins-regular mt-3"
+          style={{ fontSize: "15px", fontWeight: "bold" }}
+        >
+          Return Policy
+        </div>
+        <div className="poppins-regular mt-1" style={{ fontSize: "14px" }}>
+          We only offer replacements for damaged products; returns or refunds
+          are not available.
+        </div>
+        {/* <p>
           <strong>Refunds</strong>
         </p>{" "}
         <p className="refund-text">
           Approved refunds by HEALING GARDEN will be processed within 7 days.
-        </p>
+        </p> */}
         {/* <strong>Shipping Policy</strong>
         <p className="refund-text">
           Orders are shipped via registered domestic courier companies or speed

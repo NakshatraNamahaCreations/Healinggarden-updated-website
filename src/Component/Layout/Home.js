@@ -87,31 +87,31 @@ export default function Home() {
       </Helmet>
       <Header />
       <Mobileheader />
-      <div className="col-12">
-        <Carousel data-bs-theme="dark">
-          {Banners.map((Ele, index) => (
-            <Carousel.Item key={index}>
-              {index === 0 && Ele.video ? (
-                <video
-                  className="vid-img d-block w-100 "
-                  autoPlay
-                  loop={true}
-                  src={Ele.video}
-                  muted
-                />
-              ) : (
-                <img
-                  className="d-block w-100 carosel-img"
-                  src={`${Ele.img}`}
-                  alt="banner"
-                />
-              )}
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
 
       <div className="web_homepage">
+        <div className="col-12">
+          <Carousel data-bs-theme="dark">
+            {Banners.map((Ele, index) => (
+              <Carousel.Item key={index}>
+                {index === 0 && Ele.video ? (
+                  <video
+                    className="vid-img d-block w-100 "
+                    autoPlay
+                    loop={true}
+                    src={Ele.video}
+                    muted
+                  />
+                ) : (
+                  <img
+                    className="d-block w-100 carosel-img"
+                    src={`${Ele.img}`}
+                    alt="banner"
+                  />
+                )}
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
         <div className="row m-auto">
           <div className="row  text-center mt-5">
             <p className="main_heaidng ">Our Workshops Objectives</p>
@@ -236,6 +236,7 @@ export default function Home() {
                       className="m-auto mt-5 row"
                       width={`${Ele.type === "ge2" ? "80" : "200"}`}
                       src={Ele.logo}
+                      style={{ width: "100px", height: "100px" }}
                     />
                   </div>
                 );
@@ -368,8 +369,32 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container">
-        <div className="mobile_homepage">
+      <div className="mobile_homepage">
+        <div className="col-12">
+          <Carousel data-bs-theme="dark">
+            {Banners.map((Ele, index) => (
+              <Carousel.Item key={index}>
+                {index === 0 && Ele.video ? (
+                  <video
+                    className="vid-img d-block "
+                    autoPlay
+                    loop={true}
+                    src={Ele.video}
+                    muted
+                    style={{ objectFit: "cover", width: "100%" }}
+                  />
+                ) : (
+                  <img
+                    className="d-block w-100 carosel-img"
+                    src={`${Ele.img}`}
+                    alt="banner"
+                  />
+                )}
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </div>
+        <div className="container">
           <div
             className="poppins-medium text-center mt-3"
             style={{ fontSize: "15px", fontWeight: 600 }}
@@ -503,7 +528,7 @@ export default function Home() {
             style={{ justifyContent: "space-between" }}
           >
             <div
-              className="poppins-medium"
+              className="poppins-regular"
               style={{ fontSize: "17px", fontWeight: 600 }}
             >
               Clients Served
@@ -522,8 +547,9 @@ export default function Home() {
                   <div className="d-flex" style={{ justifyContent: "center" }}>
                     <img
                       className=" mt-2 "
-                      // width={`${Ele.type === "ge2" ? "80px" : "200px"}`}
-                      style={{ width: "140px", height: "50px" }}
+                      width={`${Ele.type === "ge2" ? "100px" : "140px"}`}
+                      height={`${Ele.type === "ge2" ? "100px" : ""}`}
+                      // style={{ width: "140px", height: "50px" }}
                       src={Ele.logo}
                     />
                   </div>

@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
+import Mobileheader from "./Layout/Mobileheader";
+import Mobilefooter from "./Layout/Mobilefooter";
 export default function View() {
   const [loading, setLoading] = useState(true);
   const queryParams = new URLSearchParams(useLocation().search);
@@ -61,7 +63,7 @@ export default function View() {
         `https://api.healinggarden.co.in/api/workshop/getworkshopbyid/${id}`
       );
       setDataById(response.data.data);
-    } catch (error) {                    
+    } catch (error) {
       console.error("Error fetching workshop by id:", error);
     } finally {
       setLoading(false);
@@ -234,41 +236,43 @@ export default function View() {
   return (
     <>
       <Header />
-      <div className="categoryview m-auto row ">
-        <hr className="row hr-line" style={{ borderColor: "white" }}></hr>
-        <p className="p-1">
-          {" "}
-          <a className="footertext" href="/">
-            Home
-          </a>
-          {">"}{" "}
-          <a href="/individual" className="footertext">
-            For Individuals
-          </a>{" "}
-          {">"} {categoryData?.category} {">"} {DataById?.workshopTitle}
-        </p>
-      </div>
-      <div className="row m-auto mt-5 ">
-        <div className="col-md-6 PositionR">
-          <div className="viewimg p-1">
-            <div className="video-wrapper ">
-              <iframe
-                className="video"
-                src={videoLinks?.[0]}
-                title={`YouTube video player`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
+      <Mobileheader />
+      <div className="web-view">
+        <div className="categoryview m-auto row ">
+          <hr className="row hr-line" style={{ borderColor: "white" }}></hr>
+          <p className="p-1">
+            {" "}
+            <a className="footertext" href="/">
+              Home
+            </a>
+            {">"}{" "}
+            <a href="/individual" className="footertext">
+              For Individuals
+            </a>{" "}
+            {">"} {categoryData?.category} {">"} {DataById?.workshopTitle}
+          </p>
+        </div>
+        <div className="row m-auto mt-5 ">
+          <div className="col-md-6 PositionR">
+            <div className="viewimg p-1">
+              <div className="video-wrapper ">
+                <iframe
+                  className="video"
+                  src={videoLinks?.[0]}
+                  title={`YouTube video player`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
-          </div>
-          <div
-            className="row m-auto textbold inter"
-            style={{ display: "inline-block" }}
-          >
-            <p className="sub_heading m-auto textbold ">Schedule</p>
-            {/* {workshopSlots1?.sessionType === "One Session" && (
+            <div
+              className="row m-auto textbold inter"
+              style={{ display: "inline-block" }}
+            >
+              <p className="sub_heading m-auto textbold ">Schedule</p>
+              {/* {workshopSlots1?.sessionType === "One Session" && (
               <div
                 key={workshopSlots?.slots?.[0]?.startTime}
                 className={`slot-item ${selectedSlot?.startTime === workshopSlots?.slots[0].startTime ? 'selected' : ''}`}
@@ -304,189 +308,480 @@ export default function View() {
               </div>
             )} */}
 
-            {workshopSlots1?.sessionType === "One Session" ? (
-              workshopSlots1?.slots?.length > 0 ? (
-                <>
-                  {workshopSlots1.slots.map((ele, index) => (
-                    <div
-                      key={`${ele.Workshodate}-${ele.startTime}`}
-                      className={`row m-auto slot-item text-center mt-2 ${
-                        selectedSlot?.startTime === ele.startTime &&
-                        selectedSlot?.Workshodate === ele.Workshodate
-                          ? "selected"
-                          : ""
-                      }`}
-                      style={{
-                        backgroundColor: "#1f4737",
-                        padding: "8px",
-                        color: "white",
-                        fontSize: "14px",
-                        marginTop: "10px",
-                        width: "300px",
-                        textAlign: "center",
-                        borderRadius: "5px",
-                      }}
-                    >
-                      <div className="text-center">
-                        {formatAll(ele.Workshodate, ele.startTime, ele.endTime)}
+              {workshopSlots1?.sessionType === "One Session" ? (
+                workshopSlots1?.slots?.length > 0 ? (
+                  <>
+                    {workshopSlots1.slots.map((ele, index) => (
+                      <div
+                        key={`${ele.Workshodate}-${ele.startTime}`}
+                        className={`row m-auto slot-item text-center mt-2 ${
+                          selectedSlot?.startTime === ele.startTime &&
+                          selectedSlot?.Workshodate === ele.Workshodate
+                            ? "selected"
+                            : ""
+                        }`}
+                        style={{
+                          backgroundColor: "#1f4737",
+                          padding: "8px",
+                          color: "white",
+                          fontSize: "14px",
+                          marginTop: "10px",
+                          width: "300px",
+                          textAlign: "center",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div className="text-center">
+                          {formatAll(
+                            ele.Workshodate,
+                            ele.startTime,
+                            ele.endTime
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </>
-              ) : (
-                <p>No workshop slots available.</p>
-              )
-            ) : null}
+                    ))}
+                  </>
+                ) : (
+                  <p>No workshop slots available.</p>
+                )
+              ) : null}
 
-            {workshopSlots1?.sessionType === "Multiple Sessions" ? (
-              workshopSlots1?.slots?.length > 0 ? (
-                <>
-                  {workshopSlots1.slots.map((ele, index) => (
-                    <div
-                      key={`${ele.Workshodate}-${ele.startTime}`}
-                      onClick={() => handleSelectDate(ele)}
-                      className={`row m-auto slot-item text-center mt-2 ${
-                        selectedSlot?.startTime === ele.startTime &&
-                        selectedSlot?.Workshodate === ele.Workshodate
-                          ? "selected"
-                          : ""
-                      }`}
-                      style={{
-                        backgroundColor: "#1f4737",
-                        padding: "8px",
-                        color: "white",
-                        fontSize: "14px",
-                        marginTop: "10px",
-                        width: "300px",
-                        textAlign: "center",
-                        borderRadius: "5px",
-                      }}
-                    >
-                      <div className="text-center">
-                        {formatAll(ele.Workshodate, ele.startTime, ele.endTime)}
+              {workshopSlots1?.sessionType === "Multiple Sessions" ? (
+                workshopSlots1?.slots?.length > 0 ? (
+                  <>
+                    {workshopSlots1.slots.map((ele, index) => (
+                      <div
+                        key={`${ele.Workshodate}-${ele.startTime}`}
+                        onClick={() => handleSelectDate(ele)}
+                        className={`row m-auto slot-item text-center mt-2 ${
+                          selectedSlot?.startTime === ele.startTime &&
+                          selectedSlot?.Workshodate === ele.Workshodate
+                            ? "selected"
+                            : ""
+                        }`}
+                        style={{
+                          backgroundColor: "#1f4737",
+                          padding: "8px",
+                          color: "white",
+                          fontSize: "14px",
+                          marginTop: "10px",
+                          width: "300px",
+                          textAlign: "center",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div className="text-center">
+                          {formatAll(
+                            ele.Workshodate,
+                            ele.startTime,
+                            ele.endTime
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </>
-              ) : (
-                <p>No workshop slots available.</p>
-              )
-            ) : null}
+                    ))}
+                  </>
+                ) : (
+                  <p>No workshop slots available.</p>
+                )
+              ) : null}
+            </div>
+
+            {workshopSlots.slots?.length > 3 && (
+              <a
+                className="readmore cursor"
+                onClick={() => setviewSlots(!viewSlots)}
+              >
+                {!viewSlots ? "More" : "Less"}
+              </a>
+            )}
+            <img
+              className="viewsvg1"
+              width={250}
+              height={250}
+              src="../workshop/img4.svg"
+            />
           </div>
 
-          {workshopSlots.slots?.length > 3 && (
+          <div className="col-md-6 ">
+            <p className="main_heading categorycolor sourc">
+              {DataById?.workshopTitle}
+            </p>
+            <p className="sub_sub_heading  m-auto">
+              <span>
+                {languagedata?.map((ele, index) => (
+                  <span key={index} className="me-1">
+                    {ele.name},{index < languages?.length - 1 && ","}
+                  </span>
+                ))}
+              </span>{" "}
+              | {DataById?.minAge}yrs | Location:{" "}
+              <a href={DataById?.gMapDirection}>Go</a>
+            </p>
+            <p className="sub_sub_heading  ">{DataById?.sessionAddress}</p>
+            <p className="sub_heading textbold inter">About</p>
+            <ul>
+              <div
+                className="sub_heading"
+                dangerouslySetInnerHTML={{
+                  __html: showFullDescription
+                    ? DataById?.discription?.[0]
+                    : `${DataById?.discription?.[0]?.substring(0, 400)}...`,
+                }}
+              />
+
+              <a
+                className="readmore cursor"
+                style={{ position: "relative", zIndex: "10" }}
+                onClick={() => setShowFullDescription(!showFullDescription)}
+              >
+                {!showFullDescription ? " Read More..." : " Read Less"}
+              </a>
+            </ul>
+            <div className="row">
+              <button
+                className="col-md-4 book-now p-1"
+                onClick={handleBookWorkShop}
+              >
+                <p className="m-auto inter textbold">
+                  Rs.{DataById?.OfferPrice}/-
+                </p>
+                <p className="m-auto inter textbold">Book Now</p>
+              </button>
+            </div>
+            <img
+              className="viewsvg2"
+              width={300}
+              height={300}
+              src="../workshop/img6.svg"
+            />
+          </div>
+        </div>
+        <div className="row m-auto view-reason p-5 mt-3">
+          <div className="row PositionR">
+            <img
+              className="viewsvg3"
+              width={250}
+              height={250}
+              src="../workshop/img6.svg"
+            />
+
+            <p className="main_heading subtext text_light">Reasons to join</p>
+
+            <ul>
+              <div
+                className="reason"
+                dangerouslySetInnerHTML={{
+                  __html: ShowFullReasonToJoin
+                    ? DataById?.reasonToJoin?.[0]
+                    : `${DataById?.reasonToJoin?.[0].substring(0, 100)}...`,
+                }}
+              />
+            </ul>
             <a
-              className="readmore cursor"
-              onClick={() => setviewSlots(!viewSlots)}
+              className="col-md-2 readmore cursor"
+              style={{ position: "relative", zIndex: "1" }}
+              onClick={() => setShowFullReasonToJoin(!ShowFullReasonToJoin)}
             >
-              {!viewSlots ? "More" : "Less"}
+              {!ShowFullReasonToJoin ? " Read More..." : " Read Less"}
             </a>
-          )}
-          <img
+          </div>
+          <div className="row mt-5">
+            <p className="main_heading subtext text_light">Terms & Condition</p>
+            <ul>
+              {DataById?.terms?.map((term, index) => (
+                <p
+                  key={index}
+                  className="reason text_light"
+                  dangerouslySetInnerHTML={{ __html: term }}
+                />
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="mobille-view">
+        <div className="categoryview m-auto row ">
+          <hr className="row hr-line" style={{ borderColor: "white" }}></hr>
+          <p className="p-1">
+            {" "}
+            <a className="poppins-regular footertext" href="/">
+              Home
+            </a>
+            {">"}{" "}
+            <a href="/individual" className="poppins-regular footertext">
+              For Individuals
+            </a>{" "}
+            {">"}{" "}
+            <span className="poppins-regular">
+              {categoryData?.category} {">"} {DataById?.workshopTitle}
+            </span>
+          </p>
+        </div>
+        <div className="row m-auto mt-3 ">
+          <div className="col-md-6 PositionR">
+            <iframe
+              className="video"
+              src={videoLinks?.[0]}
+              title={`YouTube video player`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+
+            <div
+              className="row m-auto textbold inter"
+              style={{ display: "inline-block" }}
+            >
+              <p className="poppins-regular m-auto textbold ">Schedule</p>
+              {/* {workshopSlots1?.sessionType === "One Session" && (
+              <div
+                key={workshopSlots?.slots?.[0]?.startTime}
+                className={`slot-item ${selectedSlot?.startTime === workshopSlots?.slots[0].startTime ? 'selected' : ''}`}
+                onClick={() => handleSelectDate(workshopSlots?.slots?.[0])}
+              >
+                {formatAll(workshopSlots?.slots[0]?.Workshodate, workshopSlots?.slots[0]?.startTime, workshopSlots?.slots[0]?.endTime)}
+              </div>
+            )}
+            {workshopSlots?.sessionType === "Multiple Sessions" && (
+              <div className="col-md-8 m-auto">
+                {!viewSlots
+                  ? sortedSlots.slice(0, 3).map((ele) => (
+                    <div
+                      key={`${ele.Workshodate}-${ele.startTime}`}
+                      className={`row m-auto slot-item text-center ${selectedSlot?.startTime === ele.startTime && selectedSlot?.Workshodate === ele.Workshodate ? 'selected' : ''}`}
+                      onClick={() => handleSelectDate(ele)}
+                    >
+                      {formatAll(ele.Workshodate, ele.startTime, ele.endTime)}
+                    </div>
+                  ))
+                  :
+                  sortedSlots.map((ele) => (
+                    <div
+                      key={`${ele.Workshodate}-${ele.startTime}`}
+                      className={`row m-auto slot-item text-center ${selectedSlot?.startTime === ele.startTime && selectedSlot?.Workshodate === ele.Workshodate ? 'selected' : ''}`}
+                      onClick={() => handleSelectDate(ele)}
+                    >
+                      {formatAll(ele.Workshodate, ele.startTime, ele.endTime)}
+                    </div>
+                  ))
+                }
+
+              </div>
+            )} */}
+
+              {workshopSlots1?.sessionType === "One Session" ? (
+                workshopSlots1?.slots?.length > 0 ? (
+                  <>
+                    {workshopSlots1.slots.map((ele, index) => (
+                      <div
+                        key={`${ele.Workshodate}-${ele.startTime}`}
+                        className={`row m-auto poppins-regular slot-item text-center mt-2 ${
+                          selectedSlot?.startTime === ele.startTime &&
+                          selectedSlot?.Workshodate === ele.Workshodate
+                            ? "selected"
+                            : ""
+                        }`}
+                        style={{
+                          backgroundColor: "#1f4737",
+                          padding: "8px",
+                          color: "white",
+                          fontSize: "14px",
+                          marginTop: "10px",
+                          width: "300px",
+                          textAlign: "center",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div className="text-center poppins-regular">
+                          {formatAll(
+                            ele.Workshodate,
+                            ele.startTime,
+                            ele.endTime
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <p className="poppins-regular">
+                    No workshop slots available.
+                  </p>
+                )
+              ) : null}
+
+              {workshopSlots1?.sessionType === "Multiple Sessions" ? (
+                workshopSlots1?.slots?.length > 0 ? (
+                  <>
+                    {workshopSlots1.slots.map((ele, index) => (
+                      <div
+                        key={`${ele.Workshodate}-${ele.startTime}`}
+                        onClick={() => handleSelectDate(ele)}
+                        className={`row m-auto poppins-regular slot-item text-center mt-2 ${
+                          selectedSlot?.startTime === ele.startTime &&
+                          selectedSlot?.Workshodate === ele.Workshodate
+                            ? "selected"
+                            : ""
+                        }`}
+                        style={{
+                          backgroundColor: "#1f4737",
+                          padding: "8px",
+                          color: "white",
+                          fontSize: "14px",
+                          marginTop: "10px",
+                          width: "300px",
+                          textAlign: "center",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div className="text-center poppins-regular">
+                          {formatAll(
+                            ele.Workshodate,
+                            ele.startTime,
+                            ele.endTime
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <p className="poppins-regular">
+                    No workshop slots available.
+                  </p>
+                )
+              ) : null}
+            </div>
+
+            {workshopSlots.slots?.length > 3 && (
+              <a
+                className="readmore cursor poppins-regular"
+                onClick={() => setviewSlots(!viewSlots)}
+              >
+                {!viewSlots ? "More" : "Less"}
+              </a>
+            )}
+            {/* <img
             className="viewsvg1"
             width={250}
             height={250}
             src="../workshop/img4.svg"
-          />
-        </div>
-
-        <div className="col-md-6 ">
-          <p className="main_heading categorycolor sourc">
-            {DataById?.workshopTitle}
-          </p>
-          <p className="sub_sub_heading  m-auto">
-            <span>
-              {languagedata?.map((ele, index) => (
-                <span key={index} className="me-1">
-                  {ele.name},{index < languages?.length - 1 && ","}
-                </span>
-              ))}
-            </span>{" "}
-            | {DataById?.minAge}yrs | Location:{" "}
-            <a href={DataById?.gMapDirection}>Go</a>
-          </p>
-          <p className="sub_sub_heading  ">{DataById?.sessionAddress}</p>
-          <p className="sub_heading textbold inter">About</p>
-          <ul>
-            <div
-              className="sub_heading"
-              dangerouslySetInnerHTML={{
-                __html: showFullDescription
-                  ? DataById?.discription?.[0]
-                  : `${DataById?.discription?.[0]?.substring(0, 400)}...`,
-              }}
-            />
-
-            <a
-              className="readmore cursor"
-              style={{ position: "relative", zIndex: "10" }}
-              onClick={() => setShowFullDescription(!showFullDescription)}
-            >
-              {!showFullDescription ? " Read More..." : " Read Less"}
-            </a>
-          </ul>
-          <div className="row">
-            <button
-              className="col-md-4 book-now p-1"
-              onClick={handleBookWorkShop}
-            >
-              <p className="m-auto inter textbold">
-                Rs.{DataById?.OfferPrice}/-
-              </p>
-              <p className="m-auto inter textbold">Book Now</p>
-            </button>
+          /> */}
           </div>
-          <img
-            className="viewsvg2"
-            width={300}
-            height={300}
-            src="../workshop/img6.svg"
-          />
-        </div>
-      </div>
-      <div className="row m-auto view-reason p-5 mt-3">
-        <div className="row PositionR">
-          <img
-            className="viewsvg3"
-            width={250}
-            height={250}
-            src="../workshop/img6.svg"
-          />
 
-          <p className="main_heading subtext text_light">Reasons to join</p>
-
-          <ul>
-            <div
-              className="reason"
-              dangerouslySetInnerHTML={{
-                __html: ShowFullReasonToJoin
-                  ? DataById?.reasonToJoin?.[0]
-                  : `${DataById?.reasonToJoin?.[0].substring(0, 100)}...`,
-              }}
-            />
-          </ul>
-          <a
-            className="col-md-2 readmore cursor"
-            style={{ position: "relative", zIndex: "1" }}
-            onClick={() => setShowFullReasonToJoin(!ShowFullReasonToJoin)}
-          >
-            {!ShowFullReasonToJoin ? " Read More..." : " Read Less"}
-          </a>
-        </div>
-        <div className="row mt-5">
-          <p className="main_heading subtext text_light">Terms & Condition</p>
-          <ul>
-            {DataById?.terms?.map((term, index) => (
-              <p
-                key={index}
-                className="reason text_light"
-                dangerouslySetInnerHTML={{ __html: term }}
+          <div className="col-md-6 ">
+            <p
+              className="poppins-regular mt-2 categorycolor "
+              style={{ fontSize: "17px", fontWeight: "bold" }}
+            >
+              {DataById?.workshopTitle}
+            </p>
+            <p className="poppins-regular" style={{ fontSize: "13px" }}>
+              <span className="poppins-regular" style={{ fontSize: "13px" }}>
+                {languagedata?.map((ele, index) => (
+                  <span key={index} className="me-1">
+                    {ele.name},{index < languages?.length - 1 && ","}
+                  </span>
+                ))}
+              </span>{" "}
+              | {DataById?.minAge}yrs | Location:{" "}
+              <a href={DataById?.gMapDirection}>Go</a>
+            </p>
+            <p className="poppins-regular" style={{ fontSize: "13px" }}>
+              {DataById?.sessionAddress}
+            </p>
+            <p className="poppins-regular textbold inter">About</p>
+            <ul>
+              <div
+                className="poppins-regular"
+                dangerouslySetInnerHTML={{
+                  __html: showFullDescription
+                    ? DataById?.discription?.[0]
+                    : `${DataById?.discription?.[0]?.substring(0, 400)}...`,
+                }}
               />
-            ))}
-          </ul>
+
+              <a
+                className="readmore cursor poppins-regular"
+                style={{ position: "relative", zIndex: "10" }}
+                onClick={() => setShowFullDescription(!showFullDescription)}
+              >
+                {!showFullDescription ? " Read More..." : " Read Less"}
+              </a>
+            </ul>
+            <div className="row">
+              <button
+                className="col-md-4 book-now p-1"
+                onClick={handleBookWorkShop}
+              >
+                <p className="m-auto inter textbold poppins-regular">
+                  Rs.{DataById?.OfferPrice}/-
+                </p>
+                <p className="m-auto inter textbold poppins-regular">
+                  Book Now
+                </p>
+              </button>
+            </div>
+            {/* <img
+              className="viewsvg2"
+              width={300}
+              height={300}
+              src="../workshop/img6.svg"
+            /> */}
+          </div>
+        </div>
+        <div className="row m-auto view-reason p-5 mt-3">
+          <div className="row PositionR">
+            {/* <img
+              className="viewsvg3"
+              width={250}
+              height={250}
+              src="../workshop/img6.svg"
+            /> */}
+
+            <p
+              className="poppins-regular subtext text_light"
+              style={{ fontSize: "15px", fontWeight: "bold" }}
+            >
+              Reasons to join
+            </p>
+
+            <ul>
+              <div
+                className="reason poppins-regular"
+                dangerouslySetInnerHTML={{
+                  __html: ShowFullReasonToJoin
+                    ? DataById?.reasonToJoin?.[0]
+                    : `${DataById?.reasonToJoin?.[0].substring(0, 100)}...`,
+                }}
+              />
+            </ul>
+            <a
+              className="col-md-2 readmore cursor poppins-regular"
+              style={{ position: "relative", zIndex: "1" }}
+              onClick={() => setShowFullReasonToJoin(!ShowFullReasonToJoin)}
+            >
+              {!ShowFullReasonToJoin ? " Read More..." : " Read Less"}
+            </a>
+          </div>
+          <div className="row mt-5">
+            <p className="poppins-regular subtext text_light ">
+              Terms & Condition
+            </p>
+            <ul>
+              {DataById?.terms?.map((term, index) => (
+                <p
+                  key={index}
+                  className="reason text_light poppins-regular"
+                  dangerouslySetInnerHTML={{ __html: term }}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
       <Footer />
+      <Mobilefooter />
     </>
   );
 }
