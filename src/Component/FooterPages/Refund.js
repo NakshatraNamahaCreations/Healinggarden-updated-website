@@ -59,8 +59,32 @@ export default function CancellationAndRefund() {
             className="m-auto poppins-regular  mb-3 mt-3"
             style={{ fontSize: "17px", fontWeight: "bold" }}
           >
-            Refund and Cancellation Policy
+            Shipping & Return Policy
           </div>
+        </div>
+        <div
+          className="m-auto poppins-regular  mb-3 mt-3"
+          style={{ fontSize: "17px", fontWeight: "bold" }}
+        >
+          Shipping Policy
+        </div>
+        <p className="poppins-regular" style={{ fontSize: "14px" }}>
+          Orders are shipped via registered domestic courier companies or speed
+          post only. Shipments are dispatched within 5 working days from the
+          order/payment date or as per the agreed delivery date at the time of
+          order confirmation. Delivery timelines are subject to courier
+          company/postal authority norms. The Platform Owner is not responsible
+          for delays caused by courier companies or postal authorities. All
+          orders will be delivered to the address provided by the buyer during
+          purchase. Shipping costs, if any, imposed by the seller or Platform
+          Owner are non-refundable.
+        </p>
+
+        <div
+          className="m-auto poppins-regular  mb-3 mt-3"
+          style={{ fontSize: "17px", fontWeight: "bold" }}
+        >
+          Refund and Cancellation Policy
         </div>
         <p className="poppins-regular" style={{ fontSize: "14px" }}>
           Our refund and cancellation policy details how you can manage

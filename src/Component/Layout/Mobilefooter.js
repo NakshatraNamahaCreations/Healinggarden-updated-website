@@ -198,7 +198,10 @@ function Mobilefooter() {
           <div className="col-md-10 ">
             {" "}
             <div className=" d-flex ">
-              <li className="list linktext m-auto">
+              <li
+                className="list linktext m-auto p-2"
+                style={{ borderRight: "2px solid white" }}
+              >
                 <a
                   href="/terms-and-conditions"
                   className="poppins-regular anchortext"
@@ -207,7 +210,10 @@ function Mobilefooter() {
                 </a>{" "}
               </li>
               {/* <li className="list linktext me-1">|</li>  */}
-              <li className="list linktext m-auto">
+              <li
+                className="list linktext m-auto  p-2"
+                style={{ borderRight: "2px solid white" }}
+              >
                 <a
                   className="poppins-regular anchortext"
                   href="/privacy-policy"
@@ -216,7 +222,10 @@ function Mobilefooter() {
                 </a>
               </li>
               {/* <li className="list linktext  me-1">|</li> */}
-              <li className="list linktext m-auto">
+              <li
+                className="list linktext m-auto  p-2"
+                style={{ borderRight: "2px solid white" }}
+              >
                 <a
                   className="anchortext poppins-regular"
                   href="/cancellation-and-refund-policy"
@@ -225,7 +234,7 @@ function Mobilefooter() {
                 </a>
               </li>
               {/* <li className="list linktext  me-1">|</li> */}
-              <li className="list linktext m-auto">
+              <li className="list linktext m-auto mx-2">
                 {" "}
                 <BiSolidCopyright className="me-1 m-auto linktext" />
                 <span className="m-auto linktext poppins-regular">
